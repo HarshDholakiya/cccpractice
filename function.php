@@ -25,5 +25,6 @@
 
 //5.strtolower($string):
 echo strtolower("HELLO EVERYONE MY NAME IS HARSH");
+echo strtoupper("hello everyone");
 
 ?>
