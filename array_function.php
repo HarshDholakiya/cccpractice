@@ -25,9 +25,9 @@
         //             echo "Key=" . $x . ", Value=" . $x_value;
         //             echo "<br>";
         //           }
-            //output:Key=Peter, Value=35
+                  //output:Key=Peter, Value=35
                   //  Key=Ben, Value=37
-                   // Key=Joe, Value=43
+                  // Key=Joe, Value=43
 
 //Multidimensional arrays:
 //syntax:
@@ -280,14 +280,5 @@
             // array_splice($a1,0,2,$a2);
             // print_r($a1);
     //output:Array ( [0] => purple [1] => orange [c] => blue [d] => yellow )
-
-
-
-
-
-
-        
-     
-
-       
+      
 ?>
