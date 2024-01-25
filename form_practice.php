@@ -10,19 +10,19 @@
 
     <form action="form_database.php" method="post" style="max-width: 600px; margin: 0 auto;">
         <label for="product_name" style="display: block; margin-top: 10px;">Product Name:</label>
-        <input type="text" id="product_name" name="product_name" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="text" id="product_name" name="ccc_product[product_name]" required style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <label for="sku" style="display: block; margin-top: 10px;">SKU:</label>
-        <input type="text" id="sku" name="sku" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="text" id="sku" name="ccc_product[sku]" required style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <label style="display: block; margin-top: 10px;">Product Type:</label>
-        <input type="radio" id="product_type" name="product_type" value="Simple" checked style="margin-right: 5px;">
+        <input type="radio" id="product_type" name="ccc_product[product_type]" value="Simple" checked style="margin-right: 5px;">
         <label for="simpleType">Simple</label>
-        <input type="radio" id="bundleType" name="product_type" value="Bundle" style="margin-right: 5px;">
+        <input type="radio" id="bundleType" name="ccc_product[product_type]" value="Bundle" style="margin-right: 5px;">
         <label for="bundleType">Bundle</label>
 
         <label for="category" style="display: block; margin-top: 10px;">Category:</label>
-        <select id="category" name="category" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box;">
+        <select id="category" name="ccc_product[category]" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box;">
             <option value="Bar & Game Room">Bar & Game Room</option>
             <option value="Bedroom">Bedroom</option>
             <option value="Decor">Decor</option>
@@ -35,28 +35,28 @@
         </select>
 
         <label for="manufacturer_cost" style="display: block; margin-top: 10px;">Manufacturer Cost:</label>
-        <input type="text" id="manufacturer_cost" name="manufacturer_cost" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="text" id="manufacturer_cost" name="ccc_product[manufacturer_cost]" required style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <label for="shipping_cost" style="display: block; margin-top: 10px;">Shipping Cost:</label>
-        <input type="text" id="shipping_cost" name="shipping_cost" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="text" id="shipping_cost" name="ccc_product[shipping_cost]" required style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <label for="total_cost" style="display: block; margin-top: 10px;">Total Cost:</label>
-        <input type="text" id="total_cost" name="total_cost" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="text" id="total_cost" name="ccc_product[total_cost]" required style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <label for="price" style="display: block; margin-top: 10px;">Price:</label>
-        <input type="text" id="price" name="price" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="text" id="price" name="ccc_product[price]" required style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <label for="status" style="display: block; margin-top: 10px;">Status:</label>
-        <select id="status" name="status" style="width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box;">
+        <select id="status" name="ccc_product[status]" style="width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box;">
             <option value="Enabled">Enabled</option>
             <option value="Disabled">Disabled</option>
         </select>
 
         <label for="created_at" style="display: block; margin-top: 10px;">Created At:</label>
-        <input type="date" id="created_at" name="created_at" style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="date" id="created_at" name="ccc_product[created_at]" style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <label for="updated_at" style="display: block; margin-top: 10px;">Updated At:</label>
-        <input type="date" id="updated_at" name="updated_at" style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <input type="date" id="updated_at" name="ccc_product[updated_at]" style="width: 100%; padding: 8px; box-sizing: border-box;">
 
         <input type="submit" value="submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin-top: 10px; cursor: pointer; border-radius: 5px;">
     </form>
