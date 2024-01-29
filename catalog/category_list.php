@@ -1,43 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories List</title>
-   
-</head>
-<body>
->
-<div class="container mt-4">
-    <h2>Categories</h2>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Category Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $conn = mysqli_connect("localhost","root","","ccc_practice");
-            $selectCategorySql = "SELECT * FROM ccc_category";
-            $resultCategory = mysqli_query($conn, $selectCategorySql);
-           
-            while ($rowCategory = mysqli_fetch_assoc($resultCategory)) {
-                echo "<tr>
-                <td>{$rowCategory['cat_id']}</td>
-                <td>{$rowCategory['name']}</td>
-                <td><a href='delect_category.php?id={$rowCategory['cat_id']}'>Delete</a></td>
-                <td><a href='category.php?id={$rowCategory['cat_id']}'>Update</a></td>
-                </tr>";
-            
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
+<?php
+include 'sql\connection.php';
+include 'sql\function.php';
 
+$conn = mysqlConnection();
 
+// Query to retrieve the last 20 records from the ccc_product table
+$query = select('ccc_category',['*']);
+$result = mysqli_query($conn, $query);
 
-</body>
-</html>
+if ($result) {
+    echo "<h2>Category List</h2>";
+    echo "<ul>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<li>{$row['name']}</li>";
+    }
+    echo "</ul>";
+} else {
+    echo "Error: " . mysqli_error($conn);
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>

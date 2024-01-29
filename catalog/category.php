@@ -1,74 +1,47 @@
-<!-- Category Form -->
-<h2>Add Category</h2>
 <?php
+// Include necessary files and functions
+include 'sql\connection.php';
+include 'sql\function.php';
 
-if (isset($_GET['id'])) {   
-    ?>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-<?php
+$conn = mysqlConnection();
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
 
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "ccc_practice";
-$connection = mysqli_connect($server, $username, $password, $database);
-include("php_function.php");
-$id=getGetData("id");
-$query="SELECT * FROM `ccc_category` WHERE `cat_id`=$id";
-$result = mysqli_query($connection, $query);
-$row = mysqli_fetch_array($result);
-    ?>
-    <label for="categoryName">Category Name:</label>
-    <input type="text" id="name" name="name" value="<?php  echo $row['name']; ?> " required>
-    <input type="submit" value="Add Category">
-    <?php
-if (isset($_POST['submit'])){
-include("mysql_function.php");
-$conn = mysqli_connect("localhost","root","","ccc_practice");
-$data=getPostData("ccc_category");
-$sql=update("ccc_category",$data,["cat_id"=>$id]);
-$insert=mysqli_query($conn,$sql);
-if($insert){
-    echo "<script>alert('Data update successfully')</script>";
-    echo "<script>location. href='categorylist.php'</script>";
-}else {
-    echo "error";
-}
-}
-?>
-</form>
+    // Validate and insert category
+    if (!empty($name)) {
+        // Use an associative array for the insert function
+        $data = ['name' => $name];
 
-<?php
-}
-else {
-    ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <label for="categoryName">Category Name:</label>
-    <input type="text" id="name" name="name" required>
-    <input type="submit" value="Add Category">
-</form>
+        // Call the insert function with correct parameters
+        $query = insert('ccc_category', $data);
 
-<?php
-$conn = mysqli_connect("localhost","root","","ccc_practice");
-
-// Handle Category Form Submission
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"])) {
-    $name = $_POST["name"];
-
-    // Perform validation if needed
-
-    // Insert the category into the database
-    $insertCategorySql = "INSERT INTO ccc_category (name) VALUES ('$name')";
-    
-    if (mysqli_query($conn, $insertCategorySql)) {
-        echo "<script>alert('Category added successfully')</script>";
-        echo "<script>location. href='category_list.php'</script>";
-
+        if (mysqli_query($conn, $query)) {
+            echo "Category added successfully!";
+        } else {
+            echo "Error adding category: " . mysqli_error($conn);
+        }
     } else {
-        echo "Error adding category: " . mysqli_error($conn);
+        echo "Category name is required!";
     }
-}
 
+    mysqli_close($conn);
 }
-
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+</head>
+<body>
+    <h2>Add Category</h2>
+    <form action="category.php" method="post">
+        <label for="name">Category Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Add Category</button>
+    </form>
+</body>
+</html>

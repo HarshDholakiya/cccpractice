@@ -1,73 +1,43 @@
 <?php
-include 'sql/mysql_function.php';
+// Assuming you have a function to establish a database connection
+include 'sql\connection.php';
+$conn = mysqlConnection();
 
+// Query to retrieve the last 20 records from the ccc_product table
+$query = "SELECT * FROM ccc_product ORDER BY created_at DESC LIMIT 20";
+$result = mysqli_query($conn, $query);
 
-$category = select('ccc_category', 'cat_id', ['*']);
-
-$categories = [];
-while ($row=mysqli_fetch_array($category)) {
-    $categories[$row['cat_id']] = $row['name'];
-};
-
-$products = select('ccc_product', 'product_id', ['*']);
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Document</title>
-    <style>
-        h1 {
-            margin: 0;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
-</head>
-
-<body>
-    <pre>
-    <h1>Records</h1>
-    <table>
-        <thead>
-            <th>Id</th>
-            <th>Name</th>
+// Check if there are any records
+if (mysqli_num_rows($result) > 0) {
+    echo '<table border="1">';
+    echo '<tr>
+            <th>Product Name</th>
             <th>SKU</th>
             <th>Category</th>
+            <th>Edit</th>
             <th>Delete</th>
-            <th>Update</th>
-        </thead>
-        <tbody>
-            <?php
-            if ($products->num_rows > 0) {
-                while ($row = $products->fetch_assoc()) {
-                    echo "
-                    <tr>
-                        <td>{$row['product_id']}</td>
-                        <td>{$row['product_name']}</td>
-                        <td>{$row['sku']}</td>
-                        <td>{$categories[$row['cat_id']]}</td>
-                        <td><a href='product.php?id={$row["product_id"]}'>Delete</a></td>
-                        <td><a href='../form_practice.php?id={$row["product_id"]}'>Update</a></td>
-                    </tr>
-                    ";
-                }
-            }
-            ?>
-        </tbody>
-    </table>
-</body>
+          </tr>';
 
-</html>
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<tr>';
+        echo '<td>' . $row['product_name'] . '</td>';
+        echo '<td>' . $row['sku'] . '</td>';
+        echo '<td>' . $row['category'] . '</td>';
+        
+        // Edit link with product ID
+        echo '<td><a href="product.php?action=edit&product_id=' . $row['product_id'] . '">Edit</a></td>';
+        
+        // Delete link with product ID
+        echo '<td><a href="product.php?action=delete&product_id=' . $row['product_id'] . '">Delete</a></td>';
+        
+        echo '</tr>';
+    }
+
+    echo '</table>';
+} else {
+    echo 'No records found.';
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
