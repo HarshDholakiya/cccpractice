@@ -1,5 +1,5 @@
 <?php
-// Include necessary files and functions
+
 include 'sql\connection.php';
 include 'sql\function.php';
 

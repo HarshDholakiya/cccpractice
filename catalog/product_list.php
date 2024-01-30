@@ -25,11 +25,13 @@ if (mysqli_num_rows($result) > 0) {
         echo '<td>' . $row['category'] . '</td>';
         
         // Edit link with product ID
-        echo '<td><a href="product.php?action=edit&product_id=' . $row['product_id'] . '">Edit</a></td>';
+        // echo '<td><a href="product.php?action=edit&id=' . $row['product_id'] . '">Edit</a></td>';
         
-        // Delete link with product ID
-        echo '<td><a href="product.php?action=delete&product_id=' . $row['product_id'] . '">Delete</a></td>';
+        // // Delete link with product ID
+        // echo '<td><a href="product.php?action=delete&id=' . $row['product_id'] . '">Delete</a></td>';
         
+        echo "<td><a href='product.php?action=edit&id={$row['product_id']}'>Edit</a></td>";
+        echo "<td><a href='product.php?action=delete&id={$row["product_id"]}'>Delete</a></td>";
         echo '</tr>';
     }
 
@@ -38,6 +40,5 @@ if (mysqli_num_rows($result) > 0) {
     echo 'No records found.';
 }
 
-// Close the database connection
 mysqli_close($conn);
 ?>

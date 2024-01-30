@@ -1,27 +1,31 @@
 <?php
-// Include connection code and any necessary functions
+
 include 'sql\connection.php';
 include 'sql\function.php';
 include 'getpostfunction.php';
-// Assuming you have a function to establish a database connection
-$conn = mysqlConnection();
-
 $product_id = $product_name = $sku = $product_type = $category = $manufacturer_cost = $shipping_cost = $total_cost = $price = $status = $created_at = $updated_at = '';
+$conn = mysqlConnection();
+// $id=$_GET['id'];
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-if (isset($_GET['action']) && $_GET['product_id']) {
+
+if (isset($_GET['action']) && $id) {
     $action = $_GET['action'];
-    $product_id = $_GET['product_id'];
-
+    // $product_id = $_GET['product_id'];
+    global $id;
     if ($action === 'edit') {
-        $query = select('ccc_product',['*'], ["product_id = $product_id"]);
+        $query = select('ccc_product',['*'], ['product_id' => $id]);
         $result = mysqli_query($conn, $query);
         if ($result && $row = mysqli_fetch_assoc($result)) {
             foreach ($row as $key => $value) {
                 $$key = $value;
             }
+
         } else {
             echo 'Error: ' . mysqli_error($conn);
         }
+    //   $row=mysqli_fetch_assoc($result);
+    //   var_dump($row); 
         mysqli_close($conn);
     }
 }
