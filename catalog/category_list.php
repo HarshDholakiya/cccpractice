@@ -4,7 +4,7 @@ include 'sql\function.php';
 
 $conn = mysqlConnection();
 
-// Query to retrieve the last 20 records from the ccc_product table
+
 $query = select('ccc_category',['*']);
 $result = mysqli_query($conn, $query);
 
