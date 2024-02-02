@@ -24,21 +24,21 @@
 // echo $calculator->divide(5,3);
 
 //Exercise 2: Student Information:
-    // class Student{
-    //     public $name;
-    //     public $age;
-    //     public $grade;
-    //     public function displayInfo(){
-    //         echo "Name: $this->name,Age: $this->age,Grade: $this->grade";
-    //     }
-    // }
-    //     $student = new Student();
-    //     $student->name = "Harsh";
-    //     $student->age = 21;
-    //     $student->grade = "A";
-    //     $student->displayInfo();
-    
-    
+// class Student{
+//     public $name;
+//     public $age;
+//     public $grade;
+//     public function displayInfo(){
+//         echo "Name: $this->name,Age: $this->age,Grade: $this->grade";
+//     }
+// }
+//     $student = new Student();
+//     $student->name = "Harsh";
+//     $student->age = 21;
+//     $student->grade = "A";
+//     $student->displayInfo();
+
+
 //Exercise 3: Point in 2D Space:
 
 // class Point{
@@ -149,7 +149,7 @@
 
 // Exercise 7: Shape Hierarchy
 // class Shape {
-    
+
 // }
 // class Circle extends Shape {
 //     public $radius;
@@ -187,26 +187,115 @@
 
 // Exercise 8: File Management
 
-    // class File {
-    //     public $filename;
-    //     public $size;
+// class File {
+//     public $filename;
+//     public $size;
 
-    //     public function getFileExtension() {
-    //         $parts = explode(".", $this->filename);
-    //         return end($parts);
-    //     }
+//     public function getFileExtension() {
+//         $parts = explode(".", $this->filename);
+//         return end($parts);
+//     }
 
-    //     public function displayFileInfo() {
-    //         echo "Filename: $this->filename, Size: $this->size KB";
-    //     }
-    // }
+//     public function displayFileInfo() {
+//         echo "Filename: $this->filename, Size: $this->size KB";
+//     }
+// }
 
-    // $file = new File();
-    // $file->filename = "document.txt";
-    // $file->size = 1024;
+// $file = new File();
+// $file->filename = "document.txt";
+// $file->size = 1024;
 
-    // echo "File Extension: " . $file->getFileExtension() . "<br>";
-    // $file->displayFileInfo();
+// echo "File Extension: " . $file->getFileExtension() . "<br>";
+// $file->displayFileInfo();
+
+//Exercise 9: Bank Account:
+
+// class BankAccount {
+//     private $accountNumber;
+//     private $accountHolder;
+//     private $balance;
+
+//     public function __construct($accountNumber, $accountHolder, $initialBalance) {
+//         $this->accountNumber = $accountNumber;
+//         $this->accountHolder = $accountHolder;
+//         $this->balance = $initialBalance;
+//     }
+
+//     public function deposit($amount) {
+//         $this->balance += $amount;
+//     }
+
+//     public function withdraw($amount) {
+//         if ($amount <= $this->balance) {
+//             $this->balance -= $amount;
+//         } else {
+//             echo "Insufficient funds for withdrawal.";
+//         }
+//     }
+
+//     public function displayInfo() {
+//         echo "Account Number: {$this->accountNumber}, Account Holder: {$this->accountHolder}, Balance: {$this->balance} USD";
+//     }
+// }
+
+// $account1 = new BankAccount("118", "Harsh Dholaliya", 1000);
+
+// $account1->deposit(500);
+// $account1->withdraw(200);
+
+// $account1->displayInfo();
+
+//Exercise 10: Online Shop
+
+// class Product {
+//     private $productId;
+//     private $name;
+//     private $price;
+
+//     public function __construct($productId, $name, $price) {
+//         $this->productId = $productId;
+//         $this->name = $name;
+//         $this->price = $price;
+//     }
+
+//     public function getPrice() {
+//         return $this->price;
+//     }
+// }
+
+// class ShoppingCart {
+//     private $items = [];
+
+//     public function addItem(Product $product) {
+//         $this->items[] = $product;
+//     }
+
+//     public function calculateTotal() {
+//         $total = 0;
+//         foreach ($this->items as $item) {
+//             $total += $item->getPrice();
+//         }
+//         return $total;
+//     }
+
+//     public function displayItems() {
+//         echo "Shopping Cart Items:\n";
+//         foreach ($this->items as $item) {
+//             echo "{$item->getPrice()} - {$item->getPrice()} USD\n";
+//         }
+//     }
+// }
+
+// $product1 = new Product(1, "Laptop", 800);
+// $product2 = new Product(2, "Smartphone", 400);
+
+// $cart = new ShoppingCart();
+
+// $cart->addItem($product1);
+// $cart->addItem($product2);
+
+// $cart->displayItems();
+// echo "Total Price: " . $cart->calculateTotal() . " USD";
 
 
 ?>
