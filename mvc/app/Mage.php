@@ -2,6 +2,9 @@
 
 class Mage
 {
+    private static $registry = [];
+    private static $baseDir = 'C:/xampp/htdocs/intern_php/practice/mvc';
+
     public static function init()
     {
         // $request_model = new Core_Model_Request();
@@ -18,6 +21,12 @@ class Mage
         $className = ucwords($className, '_');
         return new $className();
     }
+    public static function getBlock($className)
+    {
+        $className = str_replace('/', '_Block_', $className);
+        $className = ucwords($className, '_');
+        return new $className();
+    }
 
     public static function getSingleton($className)
     {
@@ -30,6 +39,10 @@ class Mage
     }
     public static function getBaseDir($subDir = null)
     {
+            if($subDir){
+                return self::$baseDir .'/'. $subDir;
+            }
+            return self::$baseDir;
     }
 
 }

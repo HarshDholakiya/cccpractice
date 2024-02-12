@@ -2,6 +2,8 @@
 
 class Core_Block_Abstract
 {
+    public $template;
+    public $data = [];
     public function setTemplate($template)
     {
     }
@@ -34,6 +36,7 @@ class Core_Block_Abstract
     }
     public function render()
     {
+        include mage::getBaseDir('app').'/design/frontend/template/'.$this->getTemplate();
     }
 
 }
