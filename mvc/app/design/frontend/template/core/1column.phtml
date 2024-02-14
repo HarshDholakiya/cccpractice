@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <div>
+        <?php echo $this->getChildHtml('head'); ?>
+    </div>
 </head>
+
 <body>
-    <form action="">
+    
 
-    <?php
-   echo $this->getRequest()->getParams('pid');
-    ?>
-    <input type="text" name="abc" value="">
+    <div>
+        <?php echo $this->getChildHtml('header'); ?>
+    </div>
 
+    <div>
+        <?php echo $this->getChildHtml('content'); ?>
+    </div>
+    <div>
+        <?php echo $this->getChildHtml('message'); ?>
+    </div>
+    <div>
+        <?php echo $this->getChildHtml('footer'); ?>
+    </div>
+    
 
-    </form>
-   
 </body>
+
 </html>

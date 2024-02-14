@@ -1,7 +1,7 @@
 <?php
 class Core_Model_Request
 {
-    protected $_controllerName, $_moduleName, $_actionName;
+    protected $_controllerName, $_moduleName, $_actionName,$_pid;
 
     public function __construct()
     {
@@ -9,10 +9,11 @@ class Core_Model_Request
         $requestUri = $this->getRequestUri();
         
         $requestUri = array_filter(explode("/", $requestUri));
+        
        $this->_moduleName = isset($requestUri[0]) ? $requestUri[0] : 'page' ;
          $this->_controllerName = isset($requestUri[1]) ? $requestUri[1] : 'index';
          $this->_actionName = isset($requestUri[2]) ? $requestUri[2] : 'index';
-
+        
         
         
     }
@@ -42,6 +43,8 @@ class Core_Model_Request
         // echo $requst;
         $arr = str_replace("/intern_php/practice/mvc/", "", $requst);
         // echo $arr;
+        $arr = stristr($arr,"?",true);
+       
             return $arr;
     }
 
