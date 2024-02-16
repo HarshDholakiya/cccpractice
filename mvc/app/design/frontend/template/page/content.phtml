@@ -1,6 +1,11 @@
 <?php
-    $productModel = Mage::getModel("product/product");
-    print_r($productModel->load('21'));// model --- resource --- collection
+echo "<pre>";
+    $productModel = Mage::getModel("product/product")->load('5');
+    print_r($productModel->getId());
+    print_r($productModel->getProductName());
+    print_r($productModel->getSku());
+    print_r($productModel);
+   // print_r($productModel);// model --- resource --- collection
 ?>
 
 <h5>CONTENT</h5>
