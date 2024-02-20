@@ -2,7 +2,7 @@
 
 class Core_Model_Db_Adapter
 {
-    public $config = ['host' => 'localhost', 'user' => 'root', 'password' => '', 'db' => 'ccc_practice'];
+    public $config = ['host' => 'localhost', 'user' => 'root', 'password' => '', 'db' => 'mvc_practice'];
     public $connect = null;
     public function connect()
     {
@@ -13,7 +13,9 @@ class Core_Model_Db_Adapter
                 $this->config['password'],
                 $this->config['db']
             );
+        
         }
+        return $this->connect;
     }
     public function fetchAll($query)
     {
@@ -29,18 +31,25 @@ class Core_Model_Db_Adapter
     }
     public function fetchRow($query)
     {
-      $row=[];
-      $this->connect();
-      $result = mysqli_query($this->connect, $query);
-      while($_row=mysqli_fetch_assoc($result)) {
-        $row=$_row;
+        $row = [];
+        $this->connect();
+        $result = mysqli_query($this->connect, $query);
+        while ($_row = mysqli_fetch_assoc($result)) {
+            $row = $_row;
+        }
+        //print_r($row);
+        return $row;
     }
-    //print_r($row);
-    return $row;
-}
     public function insert($query)
     {
-
+        
+        $sql = mysqli_query($this->connect(), $query);
+        if ($sql) {
+           
+            return mysqli_insert_id($this->connect());
+        } else {
+            return FALSE;
+        }
     }
     public function update($query)
     {

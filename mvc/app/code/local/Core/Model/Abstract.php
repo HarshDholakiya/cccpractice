@@ -25,7 +25,8 @@ class Core_Model_Abstract
     }
     public function setId($id)
     {
-
+        $this->_data[$this->getResource()->getPrimaryKey()] = $id;
+        return $this;
     }
     public function getId()
     {
@@ -49,8 +50,9 @@ class Core_Model_Abstract
         return strtolower($str);
     }
 
-    public function __call($name,$args){
-        $name = $this->camelCase2UnderScore(substr($name,3));
+    public function __call($name, $args)
+    {
+        $name = $this->camelCase2UnderScore(substr($name, 3));
         return isset($this->_data[$name]) ? $this->_data[$name] : '';
     }
     public function getCollection()
@@ -62,7 +64,7 @@ class Core_Model_Abstract
     {
 
     }
-    
+
     public function __set($key, $value)
     {
 
@@ -77,11 +79,12 @@ class Core_Model_Abstract
     }
     public function getData($key = null)
     {
-
+        return $this->_data;
     }
     public function setData($data)
     {
-
+        $this->_data = $data;
+        return $this;
     }
     public function addData($key, $value)
     {
@@ -93,7 +96,8 @@ class Core_Model_Abstract
     }
     public function save()
     {
-
+        $this->getResource()->save($this);
+        return $this;
     }
     public function load($id, $column = null)
     {

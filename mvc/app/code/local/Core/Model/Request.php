@@ -1,21 +1,21 @@
 <?php
 class Core_Model_Request
 {
-    protected $_controllerName, $_moduleName, $_actionName,$_pid;
+    protected $_controllerName, $_moduleName, $_actionName, $_pid;
 
     public function __construct()
     {
-  
+
         $requestUri = $this->getRequestUri();
-        
+
         $requestUri = array_filter(explode("/", $requestUri));
-        
-       $this->_moduleName = isset($requestUri[0]) ? $requestUri[0] : 'page' ;
-         $this->_controllerName = isset($requestUri[1]) ? $requestUri[1] : 'index';
-         $this->_actionName = isset($requestUri[2]) ? $requestUri[2] : 'index';
-        
-        
-        
+
+        $this->_moduleName = isset($requestUri[0]) ? $requestUri[0] : 'page';
+        $this->_controllerName = isset($requestUri[1]) ? $requestUri[1] : 'index';
+        $this->_actionName = isset($requestUri[2]) ? $requestUri[2] : 'index';
+
+
+
     }
 
     public function getFullControllerClass()
@@ -43,9 +43,10 @@ class Core_Model_Request
         // echo $requst;
         $arr = str_replace("/intern_php/practice/mvc/", "", $requst);
         // echo $arr;
-        $arr = stristr($arr,"?",true);
-       
-            return $arr;
+        if (strpos($arr, "?") !== false)
+            $arr = stristr($arr, "?", true);
+
+        return $arr;
     }
 
     public function getParams($key = '')
@@ -82,5 +83,5 @@ class Core_Model_Request
         }
         return false;
     }
-   
+
 }

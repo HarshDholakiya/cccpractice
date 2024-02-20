@@ -1,13 +1,11 @@
 <?php
-echo "<pre>";
-    $productModel = Mage::getModel("product/product")->load('5');
-    print_r($productModel->getId());
-    print_r($productModel->getProductName());
-    print_r($productModel->getSku());
-    print_r($productModel);
+// echo "<pre>";
+//     $productModel = Mage::getModel("product/product")->load('5');
+//     print_r($productModel->getId());
+//     print_r($productModel->getProductName());
+//     print_r($productModel->getSku());
+//     print_r($productModel);
    // print_r($productModel);// model --- resource --- collection
-?>
+   echo $this->getChildHtml('');
 
-<h5>CONTENT</h5>
 
-<?php echo $this->getRequest()->getParams('id'); ?>
