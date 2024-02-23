@@ -109,7 +109,14 @@ class Core_Model_Abstract
     }
     public function delete()
     {
-
+        if($this->getId()){
+            $this->getResource()->delete($this);
+        }
+      
+        //var_dump($this);
+        //var_dump($this->getResource());
+        return $this;
+        
     }
 
 }

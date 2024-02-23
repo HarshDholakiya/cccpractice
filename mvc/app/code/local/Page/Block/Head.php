@@ -16,6 +16,12 @@ class Page_Block_Head extends Core_Block_Template
     {
         return $this->_css[] = $file;
     }
+    public function getJsUrl($file){
+        return Mage::getBaseUrl('skin/js/').'/'.$file;
+    }
+    public function getCssUrl($file){
+        return Mage::getBaseUrl('skin/css/').'/'.$file;
+    }
     public function getcss()
     {
         return $this->_css;

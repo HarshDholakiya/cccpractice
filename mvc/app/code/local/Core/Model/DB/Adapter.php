@@ -42,10 +42,10 @@ class Core_Model_Db_Adapter
     }
     public function insert($query)
     {
-        
+        $this->connect();
         $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
-           
+         
             return mysqli_insert_id($this->connect());
         } else {
             return FALSE;
@@ -53,11 +53,25 @@ class Core_Model_Db_Adapter
     }
     public function update($query)
     {
-
+        $this->connect();
+        $result=mysqli_query($this->connect(), $query);
+        if ($result) {
+       
+          return TRUE;
+      } else {
+          return FALSE;
+      }
     }
     public function delete($query)
     {
-
+          $this->connect();
+          $result=mysqli_query($this->connect(), $query);
+          if ($result) {
+         
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
     public function query($query)
     {
