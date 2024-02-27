@@ -40,42 +40,46 @@ $data = $this->getProduct();
 
         <div class="row">
             <label for="link">Link:</label>
-            <input type="file" name="catalog_product[link]" id="link">
+            <input type="file" name="catalog_product[link]" id="link" value="<?php echo $data->getlink()?>">
         </div>
 
         <div class="row">
             <label for="price">Price:</label>
-            <input type="number" name="catalog_product[price]" id="price">
+            <input type="number" name="catalog_product[price]" id="price" value="<?php echo $data->getprice()?>">
         </div>
 
         <div class="row">
             <label for="mfr_cost">MFR Cost:</label>
-            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost">
+            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost" value="<?php echo $data->getmfr_cost()?>">
         </div>
 
         <div class="row">
             <label for="shipping_cost">Shipping Cost:</label>
-            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost">
+            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost" value="<?php echo $data->getshipping_cost()?>">
         </div>
 
         <div class="row">
             <label for="total_cost">Total Cost:</label>
-            <input type="number" name="catalog_product[total_cost]" id="total_cost">
+            <input type="number" name="catalog_product[total_cost]" id="total_cost" value="<?php echo $data->gettotal_cost()?>">
         </div>
 
         <div class="row">
             <label for="margin_percentage">Margin Percentage:</label>
-            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage">
+            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage" value="<?php echo $data->getmargin_percentage()?>">
         </div>
 
         <div class="row">
             <label for="min_price">Min Price:</label>
-            <input type="number" name="catalog_product[min_price]" id="min_price">
+            <input type="number" name="catalog_product[min_price]" id="min_price" value="<?php echo $data->getmin_price()?>">
         </div>
 
         <div class="row">
             <label for="status">Status:</label>
-            <input type="text" name="catalog_product[status]" id="status">
+            <!-- <input type="" name="catalog_product[status]" id="status" value="<?php echo $data->getstatus()?>"> -->
+            <select name="catalog_product[status]" id="status">
+                <option value="1" <?php echo ($data->getStatus()==='Enabled') ? 'selected' : '';?>>Enable</option>
+                <option value="0" <?php echo ($data->getstatus()==='Disabled')? 'selected' : '';?>>Disable</option>
+            </select>
         </div>
 
         <div class="row">

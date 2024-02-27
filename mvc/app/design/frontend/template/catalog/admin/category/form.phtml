@@ -1,6 +1,46 @@
-<form action="" method="post">
-    <div>
-        <label for="product_name">Category</label>
-        <input type="text" id="product_name">
-    </div>
-</form>
+<?php
+$data = $this->getCategory();
+?>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Form</title>
+</head>
+
+<body>
+
+    <form action="<?php echo $this->getUrl('admin/catalog_category/save') ?>" method="post">
+    <h2>Category Form</h2>
+        <div class="row">
+            <input type="hidden" name="catalog_category[category_id]" value="<?php echo $data->getCategoryId()?>">
+        </div>
+        <div>
+            <label for="catalog_category[category_name]">Category Name:</label>
+            <input type="text" id="category_name" name="catalog_category[category_name]" value="<?php echo $data->getCategory_name()?>">
+        </div>
+
+
+
+        <div class="row">
+            <label for="status">Status:</label>
+            </div>
+            <div>
+            <!-- <input type="" name="catalog_product[status]" id="status" value="?>"> -->
+            <select name="catalog_category[status]" id="status">
+            <option value="1" <?php echo ($data->getStatus()==='Enabled') ? 'selected' : '';?>>Enable</option>
+                <option value="0" <?php echo ($data->getstatus()==='Disabled')? 'selected' : '';?>>Disable</option>
+            </select>
+        </div>
+
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+
+</html>

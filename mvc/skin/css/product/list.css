@@ -1,0 +1,46 @@
+/* Basic styling for the table */
+.list table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.list th, .list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.list th {
+    background-color: #f2f2f239;
+    padding: 15px;
+    margin: 50px;
+}
+
+/* Styling for the "Action" column */
+.list th[colspan="2"], .list td[colspan="2"] {
+    text-align: center;
+}
+
+/* Add hover effect to rows */
+.list tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Style the links in the "Action" column */
+.list a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.list a:hover {
+    text-decoration: underline;
+}
+.list h2{
+     text-align: center;
+     padding: 20px;
+     margin: 10px;
+}
+.list th.action, .list td.action {
+    text-align: center; /* Align "Action" column to the right */
+}

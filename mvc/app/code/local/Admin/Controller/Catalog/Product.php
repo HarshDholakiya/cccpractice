@@ -10,7 +10,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $layout->getChild('head')->addjs('form.js');
         $child = $layout->getChild('content');
 
-        $productForm = $layout->createBlock('catalog/admin_product');
+        $productForm = $layout->createBlock('catalog/admin_product_Form');
         $child->addChild('form', $productForm);
         $layout->toHtml();
         
@@ -29,10 +29,12 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
 
 
         print_r($product);
+        $location = Mage::getBaseUrl("admin/catalog_product/list");
+        header("Location: $location");
     }
     public function deleteAction(){
         
-        $id = $this->getRequest()->getParams("id");
+        $id = $this->getRequest()->getParams("product_id");
         // print_r($data);
         // die;
 
@@ -46,14 +48,16 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     public function listAction()
     {
         $layout = $this->getLayout();
+        $layout->getChild('head')->addcss('header.css');
+        $layout->getChild('head')->addcss('product/list.css');
+        $layout->getChild('head')->addcss('footer.css');
         // $layout->getChild('head')->addJs('js/page.js');
         // $layout->getChild('head')->addJs('js/head.js');
         // $layout->getChild('head')->addCss('css/page.css');
         // $layout->getChild('head')->addCss('css/head.css');
         $child = $layout->getChild('content');
 
-        $productForm = $layout->createBlock('catalog/admin_product_list')
-            ->setTemplate('catalog/admin/product/list.phtml');
+        $productForm = $layout->createBlock('catalog/admin_product_list');
         $child->addChild('list', $productForm);
 
 

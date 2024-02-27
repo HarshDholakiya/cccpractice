@@ -13,6 +13,14 @@ class Core_Model_Resource_Abstract
     {
         return $this->_tableName;
     }
+    public function getAdapter()
+    {
+        return new Core_Model_Db_Adapter();
+    }
+    public function getPrimaryKey()
+    {
+        return $this->_primaryKey;
+    }
     public function load($id, $column = null)
     {
         $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
@@ -108,12 +116,5 @@ class Core_Model_Resource_Abstract
 
         return "INSERT INTO {$tbname}({$columns}) VALUES ({$values})";
     }
-    public function getAdapter()
-    {
-        return new Core_Model_Db_Adapter();
-    }
-    public function getPrimaryKey()
-    {
-        return $this->_primaryKey;
-    }
+  
 }

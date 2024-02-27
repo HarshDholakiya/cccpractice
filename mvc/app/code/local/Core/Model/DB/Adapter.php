@@ -19,7 +19,13 @@ class Core_Model_Db_Adapter
     }
     public function fetchAll($query)
     {
-
+        $row = [];
+        // $this->connect();
+        $result = mysqli_query($this->connect(), $query);
+        while ($_row = $result->fetch_assoc()) {
+            $row[] = $_row;
+        }
+        return $row;
     }
     public function fetchPairs($query)
     {
@@ -32,12 +38,11 @@ class Core_Model_Db_Adapter
     public function fetchRow($query)
     {
         $row = [];
-        $this->connect();
-        $result = mysqli_query($this->connect, $query);
-        while ($_row = mysqli_fetch_assoc($result)) {
+        // $this->connect();
+        $result = mysqli_query($this->connect(), $query);
+        while ($_row = $result->fetch_assoc()) {
             $row = $_row;
         }
-        //print_r($row);
         return $row;
     }
     public function insert($query)
