@@ -6,6 +6,8 @@ class Mage
     private static $baseDir = 'C:/xampp/htdocs/intern_php/practice/mvc';
     private static $baseUrl = 'http://localhost/intern_php/practice/mvc';
 
+    private static $_singleTon=null;  
+
     public static function init()
     {
         // $request_model = new Core_Model_Request();
@@ -29,8 +31,18 @@ class Mage
         return new $className();
     }
 
-    public static function getSingleton($className)
+                                                                                                                             
+ public static function getSingleton($className)
     {
+        
+        if(isset(self::$_singleTon[$className])){
+            return  self::$_singleTon[$className]; 
+
+        }
+        else{
+
+            return self::$_singleTon[$className] = self::getModel($className); 
+        }
     }
     public static function register($key, $value)
     {
@@ -43,7 +55,7 @@ class Mage
             if($subDir){
                 return self::$baseDir .'/'. $subDir;
             }
-            return self::$baseDir;
+            return self::$baseDir.'/';
     }
     public static function getBaseUrl($subUrl = null)
     {

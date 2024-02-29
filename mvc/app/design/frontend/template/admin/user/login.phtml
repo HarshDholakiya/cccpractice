@@ -1,0 +1,17 @@
+<div class="login-container">
+    <h2>Admin_Login</h2>
+    <form action="<?php echo $this->getUrl('admin/user/login') ?>" method="post">
+    <!-- <input type="hidden"  name="customer[customer_id]"> -->
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="login[customer_email]" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="login[password]" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>

@@ -50,7 +50,7 @@ class Core_Model_Resource_Abstract
         
     //    print_r( $data[$this->getPrimaryKey()]);
         // var_dump($abstract->getId());
-        if(($data[$this->getPrimaryKey()]))
+        if(($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()]))
         {
             // unset($data[$this->getPrimaryKey()]);
             $sql = $this->updateSql(

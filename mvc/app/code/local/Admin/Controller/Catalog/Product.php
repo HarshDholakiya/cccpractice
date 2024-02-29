@@ -1,6 +1,7 @@
 <?php
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
+    protected $_allowedActions = ['form'];
     public function formAction()
     {
         $layout = $this->getLayout();
@@ -48,6 +49,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     public function listAction()
     {
         $layout = $this->getLayout();
+        // echo get_class($layout);
         $layout->getChild('head')->addcss('header.css');
         $layout->getChild('head')->addcss('product/list.css');
         $layout->getChild('head')->addcss('footer.css');

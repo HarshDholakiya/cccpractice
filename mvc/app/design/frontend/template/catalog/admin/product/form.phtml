@@ -44,6 +44,10 @@ $data = $this->getProduct();
         </div>
 
         <div class="row">
+            <label for="category_id">category_id:</label>
+            <input type="number" name="catalog_product[category_id]" id="category_id" value="<?php echo $data->getcategory_id()?>">
+        </div>
+        <div class="row">
             <label for="price">Price:</label>
             <input type="number" name="catalog_product[price]" id="price" value="<?php echo $data->getprice()?>">
         </div>

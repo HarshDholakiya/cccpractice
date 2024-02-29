@@ -56,13 +56,14 @@ class Core_Model_Resource_Collection_Abstract {
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
-            
+            // echo $sql;
         }
         $result = $this->_resource->getAdapter()->fetchAll($sql);
+        
         foreach ($result as $row) {
-            // $this->_data[] = Mage::getModel('catalog/product')->setData($row);
-            $modelObj = new $this->_model;
-            $this->_data[] = $modelObj->setData($row);
+            $this->_data[] = Mage::getModel($this->_model)->setData($row);
+            // $modelObj = new $this->_model;
+            // $this->_data[] = $modelObj->setData($row);
         }
 
 }
