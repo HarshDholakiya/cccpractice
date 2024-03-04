@@ -1,0 +1,34 @@
+<?php
+$bannerModel = Mage::getModel("banner/banner")->getCollection();
+?>
+
+<div class="list">
+    <h2>Category List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($bannerModel->getData() as $_banner): ?>
+                <tr>
+                    <td>
+                        <?php echo $_banner->getbanner_path() ?>
+                    </td>
+                    <td>
+                        <?php echo $_banner->getStatus() ?>
+                    </td>
+                    <td><a
+                            href="<?php echo $this->getUrl("admin/banner/delete?banner_id={$_banner->getId() }") ?>">Delete</a>
+                    </td>
+                    <td><a
+                            href="<?php echo $this->getUrl("admin/banner/form?banner_id={$_banner->getId()}") ?>">Update</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

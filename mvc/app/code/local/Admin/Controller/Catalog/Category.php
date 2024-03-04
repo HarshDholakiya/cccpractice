@@ -1,6 +1,8 @@
 <?php
 class Admin_Controller_Catalog_Category extends  Core_Controller_Admin_Action{
     public function formAction(){
+        Mage::getSingleton('core/session')
+                        ->get('logged_in_admin_user_id');
         $layout = $this->getLayout();
         $layout->getChild('head')->addcss('header.css');
         $layout->getChild('head')->addcss('category/form.css');

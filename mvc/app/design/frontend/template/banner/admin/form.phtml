@@ -1,0 +1,38 @@
+<?php
+$bannerData = $this->getBanner();
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Form</title>
+</head>
+<body>
+    <h2>Banner Form</h2>
+    <form action="<?php echo $this->getUrl('admin/banner/save') ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="banner[banner_id]" value="<?php echo $bannerData->getBannerId() ?>">    
+    <label for="bannerImage">Banner Image:</label>
+        <input type="file" name="banner[banner_path]" id="banner[banner_path]" value="<?php echo $bannerData->getbanner_path() ?>" >
+      
+      <?php
+    //   echo '<pre>';
+      
+        // Check if banner image path exists and display it
+        if ($bannerData->getBannerPath()) {
+            echo '<img src="' .Mage::getBaseUrl('media/banner/'). $bannerData->getBannerPath() . '" alt="Current Banner Image" style="max-width: 200px; max-height: 200px;">';
+        }
+        ?>
+        <br>
+        <label for="bannerStatus">Banner Status:</label>
+        <select name="banner[Status]" id="banner[Status]" >
+            <option value="1"<?php echo ($bannerData->getStatus()==='Enabled') ? 'selected' : '';?>>Enable</option>
+            <option value="0" <?php echo ($bannerData->getStatus()==='Disabled') ? 'selected' : '';?>>Disable</option>
+        </select>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

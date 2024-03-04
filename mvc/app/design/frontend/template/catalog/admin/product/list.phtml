@@ -1,6 +1,7 @@
 <?php
 // echo get_class($this);
 $productModel =Mage::getModel("catalog/product")->getCollection();
+
 // $productModel->addFieldToFilter('name', 'Dress');
 // $productModel->getData();
 //  echo "<pre>";
@@ -20,8 +21,11 @@ $productModel =Mage::getModel("catalog/product")->getCollection();
             </tr>
         </thead>
         <tbody>
+           
             <?php foreach ($productModel->getData() as $_product): ?>
+                
                 <tr>
+              
                     <td>
                         <?php echo $_product->getName() ?>
                     </td>

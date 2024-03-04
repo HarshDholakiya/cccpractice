@@ -66,6 +66,15 @@ class Core_Model_Request
                 : ''
             );
     }
+    public function getFileData($key = '')
+    {
+        return ($key == '')
+            ? $_FILES
+            : (isset($_FILES[$key])
+                ? $_FILES[$key]
+                : ''
+            );
+    }
     public function getQueryData($key = '')
     {
         return ($key == '')

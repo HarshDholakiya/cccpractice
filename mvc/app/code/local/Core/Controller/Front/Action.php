@@ -3,9 +3,11 @@ class Core_Controller_Front_Action
 {
     protected $_layout = null;
     public function __construct(){
+        //print_r($this);
         $this->init();
     }
     public function init(){
+        
         return $this;
     }
     public function getLayout()
