@@ -44,7 +44,7 @@ class Core_Block_Template extends Core_Block_Abstract
     }
     public function getRequest()
     {
-        return mage::getModel('core/request');
+        return Mage::getModel('core/request');
     }
 
 }

@@ -24,7 +24,7 @@ class Core_Model_Resource_Abstract
     public function load($id, $column = null)
     {
         $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
-        //echo $sql;
+        echo $sql;
         $result = $this->getAdapter()->fetchRow($sql);
         return $result;
         //print_r($result);
