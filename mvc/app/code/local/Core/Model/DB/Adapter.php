@@ -37,10 +37,13 @@ class Core_Model_Db_Adapter
     }
     public function fetchRow($query)
     {
+        // echo $query;
+        // die;
         $row = [];
         // $this->connect();
         $result = mysqli_query($this->connect(), $query);
         while ($_row = $result->fetch_assoc()) {
+            // print_r($_row);
             $row = $_row;
         }
         return $row;
@@ -48,6 +51,8 @@ class Core_Model_Db_Adapter
     public function insert($query)
     {
         $this->connect();
+        print_r($query);
+        // die;
         $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
          
@@ -59,7 +64,11 @@ class Core_Model_Db_Adapter
     public function update($query)
     {
         $this->connect();
+        print_r($query);
+        // die;
         $result=mysqli_query($this->connect(), $query);
+        // print_r($result);
+
         if ($result) {
        
           return TRUE;

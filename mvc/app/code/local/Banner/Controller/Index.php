@@ -1,2 +1,4 @@
 <?php
-class Banner_Controller_Index{}
+class Banner_Controller_Index{
+    
+}

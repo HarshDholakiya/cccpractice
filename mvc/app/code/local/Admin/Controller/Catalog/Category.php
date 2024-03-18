@@ -26,7 +26,7 @@ class Admin_Controller_Catalog_Category extends  Core_Controller_Admin_Action{
         $product->save();
 
 
-        print_r($product);
+        // print_r($product);
     }
     public function deleteAction(){
         

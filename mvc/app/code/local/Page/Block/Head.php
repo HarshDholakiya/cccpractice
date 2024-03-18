@@ -7,6 +7,7 @@ class Page_Block_Head extends Core_Block_Template
     public function __construct()
     {
         $this->setTemplate("page/head.phtml");
+        $this->addjs('jquery-3.7.1.js');
     }
     public function addjs($file)
     {

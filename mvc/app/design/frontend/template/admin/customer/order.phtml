@@ -1,0 +1,39 @@
+
+<?php
+$order = Mage::getModel('sales/order_item')->getCollection()->getData();
+?>
+
+<div class="list">
+    <h2>Order List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order_id</th>
+                <th>Product Name</th>
+                <th>Product Color</th>
+                <th>Row Total</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($order as $_list): ?>
+                <tr>
+                    <td>
+                        <?php echo $_list->getOrderId() ?>
+                    </td>
+                    <td>
+                        <?php echo $_list->getProductName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_list->getProductColor() ?>
+                    </td>
+                    <td>
+                        <?php echo $_list->getRowTotal() ?>
+                    </td>
+              
+               
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

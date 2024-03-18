@@ -1,9 +1,10 @@
 <header class="header">
         <div class="logo">Project</div>
         <nav class="nav">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
+            <a href="<?php echo $this->getUrl('page/index/index') ?>">Home</a>
+            <a href="<?php echo $this->getUrl('cart/index/form') ?>">Cart</a>
+            <a href="<?php echo $this->getUrl('catalog/category/view') ?>">Category</a>
+            <a href="<?php echo $this->getUrl('sales/customer/viewlist') ?>">View Order</a>
+            <a href="<?php echo $this->getUrl('customer/Account/logout') ?>">Logout</a>
         </nav>
     </header>

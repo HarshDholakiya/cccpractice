@@ -1,0 +1,54 @@
+<?php
+// $list = $this->getPurchaseList();
+
+$customer_id = Mage::getSingleton('core/session')
+            ->get('logged_in_customer_id');
+$final = Mage::getModel('sales/order_customer')->getCollection()->addFieldToFilter('customer_id',$customer_id)->getData();
+// foreach($final->getData() as $po){
+//     $ok = $po->getOrderId();
+//     print_r($ok);
+// foreach($customerdata as $citem){ 
+//     $customer_id = $citem->getCustomerId();
+//     // echo $customer_id;
+//     // print_r($final);
+            foreach($final as $orderItem){
+    // echo 123;
+                $order_id = $orderItem->getOrderId();
+                $order = Mage::getModel('sales/order_item')->getCollection()
+                ->addFieldToFilter('order_id',$order_id);
+                $orderhello = $order->getData();
+                foreach($orderhello as $item){
+    //  print_r($order_id);
+?>
+<div class="list">
+    <h2>Product List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Color</th>   
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        <?php echo $item->getProductName() ?>
+                    </td>
+                    <td>
+                        <?php echo $item->getProductColor() ?>
+                    </td> 
+                    <td>
+                        <?php echo $item->getItemId() ?>
+                    </td> 
+                </tr>
+            <?php 
+
+        
+    }
+    // die;
+}
+              ; 
+     ?>
+        </tbody>
+    </table>
+</div>

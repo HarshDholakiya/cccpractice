@@ -94,7 +94,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                 $count = 0;
                 $customerId = 0;
                 foreach ($customerCollection->getData() as $row) {
-                    print_r($row);
+                    // print_r($row);
                     $count++;
                     $customerId = $row->getId();
                 }
@@ -103,6 +103,8 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                     $address = Mage::getBaseUrl('customer/account');
                     Mage::getSingleton('core/session')
                         ->set('logged_in_customer_id',$customerId);
+                    Mage::getSingleton('sales/quote')->initQuote();
+                    
                     //     echo "<script>
                     //     alert('Customer register successfully');
                     //     location. href='{$address}/dashboard';
@@ -123,22 +125,22 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 
     }
     public function dashboardAction(){
-        // echo 123;
-        $customerId= Mage::getSingleton('core/session')
-      ->get('logged_in_customer_id');
-      if($customerId)
-    {
-        print_r($customerId);
-        echo "<pre>";
-       $obj= Mage::getModel('customer/customer')->getCollection()->addFieldToFilter('customer_id',$customerId)->getData();
-       print_r($obj);
-    }
-    
-    else{
-        echo "you as";
-    }                   
+  
+    $layout = $this->getLayout();
+    $layout->getChild('head')->addcss('header.css');
+    $layout->getChild('head')->addcss('footer.css');
+    $child = $layout->getchild('content');
+    $dashForm = $layout->createBlock('customer/account_dashboard');
+    $child->addChild('dashboard', $dashForm);
+    $layout->toHtml();                  
     }
     public function forgetpassword(){
 
+    }
+    public function logoutAction(){
+        Mage::getSingleton('core/session')->remove('quote_id');
+       Mage::getSingleton('core/session')->remove('logged_in_customer_id');
+       $this->setRedirect('customer/account/login');
+        
     }
 }

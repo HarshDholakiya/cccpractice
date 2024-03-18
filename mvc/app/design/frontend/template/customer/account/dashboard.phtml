@@ -1,0 +1,71 @@
+<?php 
+$customerId= Mage::getSingleton('core/session')->get('logged_in_customer_id');
+if($customerId){
+    $obj= Mage::getModel('customer/customer')->getCollection()->addFieldToFilter('customer_id',$customerId)->getData();
+}
+?>
+<div class="list">
+    <h2>Customer Information</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Billing Address</th>
+                <th>Billing City</th>
+                <th>Billing Region</th>
+                <th>Billing Country</th>
+                <th>Billing Phone</th>
+                <th>Shipping Address</th>
+                <th>Shipping City</th>
+                <th>Shipping Region</th>
+                <th>Shipping Country</th>
+                <th>Shipping Phone</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($obj as $_dashboard): ?>
+                <tr>
+                    <td>
+                        <?php echo $_dashboard->getFirstName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getLastName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getBillingAddress() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getBillingCity() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getBillingRegion() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getBillingCountry() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getBillingPhone() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getShippingAddress() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getShippingCity() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getShippingRegion() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getShippingCountry() ?>
+                    </td>
+                    <td>
+                        <?php echo $_dashboard->getShippingPhone() ?>
+                    </td>
+                    
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

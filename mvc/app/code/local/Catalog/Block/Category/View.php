@@ -6,6 +6,8 @@ class Catalog_Block_Category_View extends Core_Block_Template{
     }
     public function getProductByCategory()
     {
+        $id= $this->getRequest()->getParams('category_id');
+        if($id){
         return Mage::getModel('catalog/product')
             ->getCollection()
             ->addFieldToFilter(
@@ -14,4 +16,8 @@ class Catalog_Block_Category_View extends Core_Block_Template{
             )
             ->getData();
     }
+$list = Mage::getModel('catalog/product')->getCollection() ;
+// ->getData();
+return $list->getData();
+}
 }

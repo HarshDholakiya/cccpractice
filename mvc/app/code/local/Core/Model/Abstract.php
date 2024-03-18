@@ -100,13 +100,18 @@ class Core_Model_Abstract
     }
     public function removeData($key = null)
     {
+        if (isset($this->_data[$key]) || is_null($this->_data[$key])) {
+            unset($this->_data[$key]);
+        }
+        return $this;
+    }
+    protected function _beforeSave()
+    {
 
     }
-    protected function _beforeSave() {
+    protected function _afterSave()
+    {
 
-    }
-    protected function _afterSave() {
-        
     }
     public function save()
     {
@@ -126,14 +131,14 @@ class Core_Model_Abstract
     }
     public function delete()
     {
-        if($this->getId()){
+        if ($this->getId()) {
             $this->getResource()->delete($this);
         }
-      
+
         //var_dump($this);
         //var_dump($this->getResource());
         return $this;
-        
+
     }
 
 }

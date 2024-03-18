@@ -4,11 +4,11 @@ class Core_Model_Resource_Abstract
     protected $_tableName = "";
     protected $_primaryKey = "";
 
-    public function init($tablename, $primaryKey)
-    {
-        $this->_tableName = $tablename;
-        $this->_primaryKey = $primaryKey;
-    }
+        public function init($tablename, $primaryKey)
+        {
+            $this->_tableName = $tablename;
+            $this->_primaryKey = $primaryKey;
+        }
     public function getTableName()
     {
         return $this->_tableName;
@@ -24,7 +24,7 @@ class Core_Model_Resource_Abstract
     public function load($id, $column = null)
     {
         $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
-        echo $sql;
+         echo $sql;
         $result = $this->getAdapter()->fetchRow($sql);
         return $result;
         //print_r($result);
@@ -88,6 +88,7 @@ class Core_Model_Resource_Abstract
         $data = $abstract->getId();
         //var_dump($data);
         $sql=$this->deleteSql($this->getTableName(),[$this->getPrimaryKey() => $abstract->getId()]);
+       
         $this->getAdapter()->delete($sql);
         echo "record deleted successfully";
     }

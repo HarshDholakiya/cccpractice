@@ -51,12 +51,15 @@ class Core_Model_Resource_Collection_Abstract {
                             case 'like':
                                 $whereCondition[] = "{$column} LIKE '{$_v}'";
                                 break;
+                            case 'between':
+                                    $whereCondition[] = "{$column} BETWEEN '{$_v}'";
+                                    break;
                         }
                     }
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
-            //echo $sql;
+            echo $sql;
         }
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         

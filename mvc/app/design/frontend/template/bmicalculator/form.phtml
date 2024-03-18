@@ -15,7 +15,7 @@
             <input type="float" id="text" name="bmi[weight]" >
         </div>
         <label for="Weightstatus">Weight measure:</label>
-        <select name="Weightstatus" id="Weightstatus" >
+        <select name="weightstatus" id="Weightstatus" >
             <option value="kg">kg</option>
             <option value="pounds" >pounds</option>
         </select>
@@ -25,16 +25,53 @@
             <input type="float" id="text" name="bmi[height]" >
         </div>
         <label for="height status">Height measure:</label>
-        <select name="height status" id="height status" >
+        <select name="heightstatus" id="height status" >
             <option value="meter">meter</option>
             <option value="feet" >feet</option>
         </select>
         <div class="form-group">
           
-            <input type="hidden" id="text" name="bmi[result]" >
+            <input type="hidden" id="result" name="bmi[result]" >
         </div>
         <br>
         <button type="submit">calculate</button>
         
     </form>
+</div>
+<?php
+$Model = Mage::getModel("bmicalculator/product")->getCollection()->addFieldToFilter('weight', 45);
+?>
+
+<div class="list">
+    <h2> List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Result</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($Model->getData() as $_form): ?>
+                <tr>
+                    <td>
+                        <?php echo $_form->getUserName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_form->getweight() ?>
+                    </td>
+                    <td>
+                        <?php echo $_form->getheight() ?>
+                    </td>
+                    <td>
+                        <?php echo $_form->getresult() ?>
+                    </td>
+                   
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>

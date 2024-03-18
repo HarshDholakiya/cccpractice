@@ -29,7 +29,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $product->save();
 
 
-        print_r($product);
+        // print_r($product);
         $location = Mage::getBaseUrl("admin/catalog_product/list");
         header("Location: $location");
     }

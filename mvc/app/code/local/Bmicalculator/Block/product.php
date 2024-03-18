@@ -12,6 +12,7 @@ class Bmicalculator_Block_Product extends Core_Block_Template{
         )
         ->getData();
     }
+ 
     
     
 }
