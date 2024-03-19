@@ -128,6 +128,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
   
     $layout = $this->getLayout();
     $layout->getChild('head')->addcss('header.css');
+    $layout->getChild('head')->addcss('customer/account/dashboard.css');
     $layout->getChild('head')->addcss('footer.css');
     $child = $layout->getchild('content');
     $dashForm = $layout->createBlock('customer/account_dashboard');

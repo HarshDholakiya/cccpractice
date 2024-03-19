@@ -36,7 +36,6 @@ class Core_Model_Abstract
         return $this->_data[$this->getResource()->getPrimaryKey()];
     }
 
-
     public function getResource()
     {
         // $class = substr(get_class($this), strpos(get_class($this), "_Model_")+7)."_Model_Resource_".substr(get_class($this), strpos(get_class($this), "_Model_")+7);
@@ -100,7 +99,7 @@ class Core_Model_Abstract
     }
     public function removeData($key = null)
     {
-        if (isset($this->_data[$key]) || is_null($this->_data[$key])) {
+        if (isset($this->_data[$key])) {
             unset($this->_data[$key]);
         }
         return $this;

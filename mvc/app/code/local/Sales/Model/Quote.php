@@ -17,7 +17,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         ->addFieldToFilter('order_id',0)
         ->addFieldToFilter('customer_id',$customerId)->getFirstItem();
         // $this->load($quoteId);
-        var_dump(!is_null($exstingquote));
+        // var_dump(!is_null($exstingquote));
         if(!is_null($exstingquote)){
             Mage::getSingleton('core/session')->set('quote_id',$exstingquote->getId());
             $this->load($exstingquote->getId());
@@ -136,21 +136,19 @@ class Sales_Model_Quote extends Core_Model_Abstract
     {
         $this->initQuote();
         if ($this->getId()) {
+            
+            echo 9890;
             $order = $this->quoteToOrder();
-
             $this->quoteItemToOrderItem($order);
             $this->quoteCustomerToOrderCustomer($order);
             $payment = $this->quoteShippingToOrderShipping($order);
             $shipping = $this->quotePaymentToOrderPayment($order);
 
+            $this->addData("order_id", $order->getId())->save();
+
             $order->addData('payment_id', $payment->getId())
                 ->addData('shipping_id', $shipping->getId())
-                ->removeData('quote_id')
                 ->save();
-
-            $this->addData("order_id", $order->getId())->save();
-            // print_r($this);
-
         }
     }
     public function quoteToOrder()
@@ -161,6 +159,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
                 ->removeData('quote_id')
                 ->removeData('payment_id')
                 ->removeData('shipping_id')
+                ->removeData('customer_id')
                 ->save();
         }
     }
@@ -256,7 +255,4 @@ class Sales_Model_Quote extends Core_Model_Abstract
         }
         $this->save();
     }
-
-
-
 }

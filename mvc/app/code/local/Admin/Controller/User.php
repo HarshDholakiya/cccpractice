@@ -32,38 +32,11 @@ class Admin_Controller_User extends Core_Controller_Admin_Action{
                 else{
                     $this->setRedirect("admin/user/login");
                 }
-                
-
-    //             // $customerCollection = Mage::getModel('customer/customer')->getCollection();
-    //             $customerCollection->addFieldToFilter('email', $email);
-    //             $customerCollection->addFieldToFilter('password', $password);
-    //             // $customerCollection->getData();
-    //              echo "<pre>";
-    //         //    print_r($customerCollection);
-            
-             
-    //             // echo $count;
-             
-    //                 $address = Mage::getBaseUrl('customer/account');
-    //                 Mage::getSingleton('core/session')
-    //                     ->set('logged_in_customer_id',$customerId);
-    //                 //     echo "<script>
-    //                 //     alert('Customer register successfully');
-    //                 //     location. href='{$address}/dashboard';
-    //                 // </script>";
-    //                 $this->setRedirect("customer/account/dashboard");
-                    
-    //             }
-    //             else{
-    //                 // $address = Mage::getBaseUrl('customer/account');
-    //             //     echo "<script>
-    //             //     alert('email_id or password wrong');
-    //             //     location. href='{$address}/login';
-    //             // </script>";
-    //             $this->setRedirect("customer/account/login");
-    //             }
-    //         }
-    // }
 }
 }
+    public function logoutAction(){
+        Mage::getSingleton('core/session')->remove('quote_id');
+        Mage::getSingleton('core/session')->remove('logged_in_admin_user_id');
+        $this->setRedirect('admin/user/login');
+    }
 }

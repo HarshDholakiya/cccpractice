@@ -51,9 +51,10 @@ class Core_Model_Db_Adapter
     public function insert($query)
     {
         $this->connect();
-        print_r($query);
+        // var_dump($query);
         // die;
         $sql = mysqli_query($this->connect(), $query);
+       
         if ($sql) {
          
             return mysqli_insert_id($this->connect());
@@ -64,7 +65,7 @@ class Core_Model_Db_Adapter
     public function update($query)
     {
         $this->connect();
-        print_r($query);
+        // print_r($query);
         // die;
         $result=mysqli_query($this->connect(), $query);
         // print_r($result);

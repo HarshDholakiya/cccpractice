@@ -1,39 +1,37 @@
-
 <?php
-$order = Mage::getModel('sales/order_item')->getCollection()->getData();
+$order = $this->displayOrder();
 ?>
-
 <div class="list">
-    <h2>Order List</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Order_id</th>
-                <th>Product Name</th>
-                <th>Product Color</th>
-                <th>Row Total</th>
-              
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($order as $_list): ?>
-                <tr>
-                    <td>
-                        <?php echo $_list->getOrderId() ?>
-                    </td>
-                    <td>
-                        <?php echo $_list->getProductName() ?>
-                    </td>
-                    <td>
-                        <?php echo $_list->getProductColor() ?>
-                    </td>
-                    <td>
-                        <?php echo $_list->getRowTotal() ?>
-                    </td>
-              
-               
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <?php foreach ($order as $_list): ?>
+        <div class="order-block">
+            <h2>Order Number: <?php echo $_list->getOrderNumber() ?></h2>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Grand Total</th>
+                        <th>Status</th>
+                        <th>Current Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo $_list->getGrandTotal() ?></td>
+                        <td>
+                            <form action="<?php echo $this->getUrl('admin/sales_customer/save') ?>" method="post">
+                                <select name="order[status]" class="status-dropdown">
+                                    <?php foreach ($this->getStatusMethod() as $key => $val): ?>
+                                        <option value="<?php echo $key ?>" <?php echo ($_list->getStatus() === $val) ? 'selected' : ''; ?>><?php echo $val ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <input type="hidden" name="order[order_id]" value="<?php echo $_list->getOrderId() ?>">
+                                <input type="submit" value="Update Status" class="submit-btn">
+                            </form>
+                        </td>
+                        <td><?php echo $_list->getStatus() ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <?php endforeach; ?>
 </div>
+

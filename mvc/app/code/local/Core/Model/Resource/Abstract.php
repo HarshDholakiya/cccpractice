@@ -24,7 +24,7 @@ class Core_Model_Resource_Abstract
     public function load($id, $column = null)
     {
         $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
-         echo $sql;
+        //  echo $sql;
         $result = $this->getAdapter()->fetchRow($sql);
         return $result;
         //print_r($result);
@@ -53,13 +53,17 @@ class Core_Model_Resource_Abstract
         if(($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()]))
         {
             // unset($data[$this->getPrimaryKey()]);
+            
             $sql = $this->updateSql(
                 $this->getTableName(),
                 $data, 
                 [$this->getPrimaryKey()=>$abstract->getId()]
             );
+            // print_r($sql);
+            // die;
             $id =  $this->getAdapter()->update($sql);
         } else {
+           
             $sql = $this->insertSql($this->getTableName(),$data);
             $id =  $this->getAdapter()->insert($sql);
             $abstract->setId($id);

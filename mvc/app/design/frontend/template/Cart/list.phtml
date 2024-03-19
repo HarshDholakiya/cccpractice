@@ -1,9 +1,12 @@
 <div class="row border-top border-bottom">
     <?php
-    $cart = $this->getProduct();
+    $cart = $this->getQuoteItem();
     $total = 0;
     foreach ($cart as $item):
         $product = $this->getProductList()->addFieldToFilter('product_id', $item->getProductId())->getData()[0];
+        // echo "<pre>";
+        // print_r(get_class_methods($item));
+        // die;
         ?>
         <div class="row main align-items-center">
             <form action="<?php echo Mage::getBaseUrl('sales/quote/add') ?>" method="post">

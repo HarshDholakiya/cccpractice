@@ -1,6 +1,7 @@
 <?php
-class Core_Model_Resource_Collection_Abstract {
-    protected $_resource = null, $_select = [], $_data = [],$_model=null;
+class Core_Model_Resource_Collection_Abstract
+{
+    protected $_resource = null, $_select = [], $_data = [], $_model = null;
     public function __construct()
     {
     }
@@ -27,7 +28,7 @@ class Core_Model_Resource_Collection_Abstract {
     public function load()
     {
         $sql = "SELECT * FROM {$this->_select['FROM']}";
-        if (isset($this->_select["WHERE"])) {
+        if (isset ($this->_select["WHERE"])) {
             $whereCondition = [];
             foreach ($this->_select["WHERE"] as $column => $value) {
                 foreach ($value as $_value) {
@@ -52,31 +53,32 @@ class Core_Model_Resource_Collection_Abstract {
                                 $whereCondition[] = "{$column} LIKE '{$_v}'";
                                 break;
                             case 'between':
-                                    $whereCondition[] = "{$column} BETWEEN '{$_v}'";
-                                    break;
+                                $whereCondition[] = "{$column} BETWEEN '{$_v}'";
+                                break;
                         }
                     }
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
-            echo $sql;
+            // echo $sql;
         }
         $result = $this->_resource->getAdapter()->fetchAll($sql);
-        
+
         foreach ($result as $row) {
             $this->_data[] = Mage::getModel($this->_model)->setData($row);
             // $modelObj = new $this->_model;
             // $this->_data[] = $modelObj->setData($row);
         }
 
-}
-public function getData()
-{
-    $this->load();
-    return $this->_data;
-}
-public function getFirstItem() {
-    $this->load();
-    return (isset($this->_data[0])) ? $this->_data[0] : null;
-}
+    }
+    public function getData()
+    {
+        $this->load();
+        return $this->_data;
+    }
+    public function getFirstItem()
+    {
+        $this->load();
+        return (isset ($this->_data[0])) ? $this->_data[0] : null;
+    }
 }

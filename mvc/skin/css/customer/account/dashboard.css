@@ -1,0 +1,45 @@
+
+.customer-info {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.customer-info h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.info-table th, .info-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.info-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+}
+
+.info-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.info-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .info-table th, .info-table td {
+        font-size: 14px;
+    }
+}
