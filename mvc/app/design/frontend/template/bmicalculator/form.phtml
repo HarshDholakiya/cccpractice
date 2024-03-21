@@ -39,7 +39,7 @@
     </form>
 </div>
 <?php
-$Model = Mage::getModel("bmicalculator/product")->getCollection()->addFieldToFilter('weight', 45);
+$Model = Mage::getModel("bmicalculator/product")->getCollection()->addFieldToFilter('weight',['between'=>[1,45]]);
 ?>
 
 <div class="list">

@@ -44,6 +44,9 @@
           <div class="row main align-items-center button-container">
           <tr>
             <th>Total:</th><th><?php print_r($total); ?></th>
+            <th><a href="<?php echo $this->getUrl('cart/checkout/form'); ?>" class="button" type="submit" name="checkout">checkout</a></th>
+            <th><a href="<?php echo $this->getUrl('catalog/category/view'); ?>" class="button" type="submit" name="checkout">Back</a></th>
+            
         
           </tr>
     </div>

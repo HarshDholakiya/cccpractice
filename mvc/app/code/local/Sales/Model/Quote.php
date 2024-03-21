@@ -137,12 +137,13 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->initQuote();
         if ($this->getId()) {
             
-            echo 9890;
+            // echo 9890;
             $order = $this->quoteToOrder();
             $this->quoteItemToOrderItem($order);
             $this->quoteCustomerToOrderCustomer($order);
             $payment = $this->quoteShippingToOrderShipping($order);
             $shipping = $this->quotePaymentToOrderPayment($order);
+            $this->getOrderStatusHistory($order->getId());
 
             $this->addData("order_id", $order->getId())->save();
 
@@ -160,6 +161,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
                 ->removeData('payment_id')
                 ->removeData('shipping_id')
                 ->removeData('customer_id')
+                ->addData('status','pending')
                 ->save();
         }
     }
@@ -254,5 +256,15 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $this->addData('shipping_id', $id);
         }
         $this->save();
+    }
+    public function getOrderStatusHistory($order){
+        Mage::getModel('sales/order_history')->setData(
+
+            ['order_id'=>$order,      
+            'from_status'=>'pending',
+            'action_by'=>0                      
+            ]
+        )->save();
+
     }
 }

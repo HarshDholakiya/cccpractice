@@ -20,6 +20,27 @@ class Core_Model_Resource_Collection_Abstract
         $this->_select['FROM'] = $this->_resource->getTableName();
         return $this;
     }
+    // public function addOrderBy($orderBy){
+    //     $this->_select['ORDER BY'] = $orderBy;
+    //     return $this;
+    // }
+    public function addOrderBy($field, $direction = 'ASC')
+{
+    $this->_select['ORDER BY'][] = array(
+        'field' => $field,
+        'direction' => strtoupper($direction)
+    );
+    return $this;
+}
+
+    public function addBetween($val1,$field,$val2){
+        $this->_select['BETWEEN'][] = array(
+            'val1'=>$val1,
+            'field'=>$field,
+            'val2'=>$val2
+        );
+        return $this;
+    }
     public function addFieldToFilter($field, $value)
     {
         $this->_select['WHERE'][$field][] = $value;
@@ -55,14 +76,33 @@ class Core_Model_Resource_Collection_Abstract
                             case 'between':
                                 $whereCondition[] = "{$column} BETWEEN '{$_v}'";
                                 break;
+                            
                         }
                     }
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
-            // echo $sql;
+            echo $sql;
+        }
+        // if(isset($this->_select['ORDER BY'])){
+        //     $sql .= " ORDER BY {$this->_select['ORDER BY']}";
+        // }
+        if(isset($this->_select['ORDER BY'])){
+            $orderBy = [];
+            foreach ($this->_select['ORDER BY'] as $order) {
+                $orderBy[] = "{$order['field']} {$order['direction']}";
+            }
+            $sql .= " ORDER BY " . implode(', ', $orderBy);
+        }
+        if(isset($this->_select['BETWEEN'])){
+            $betweenby = [];
+            foreach($this->_select['BETWEEN'] as $between){
+                $betweenby[] = "{$between['field']} BETWEEN {$between['val1']} AND {$between['val2']}";
+            }
+            $sql .= " WHERE " . implode(' AND ', $betweenby);
         }
         $result = $this->_resource->getAdapter()->fetchAll($sql);
+        echo $sql;
 
         foreach ($result as $row) {
             $this->_data[] = Mage::getModel($this->_model)->setData($row);

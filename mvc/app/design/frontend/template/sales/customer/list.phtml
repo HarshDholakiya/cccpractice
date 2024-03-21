@@ -1,54 +1,54 @@
 <?php
-// $list = $this->getPurchaseList();
-
-$customer_id = Mage::getSingleton('core/session')
-            ->get('logged_in_customer_id');
+$customer_id = Mage::getSingleton('core/session')->get('logged_in_customer_id');
 $final = Mage::getModel('sales/order_customer')->getCollection()->addFieldToFilter('customer_id',$customer_id)->getData();
-// foreach($final->getData() as $po){
-//     $ok = $po->getOrderId();
-//     print_r($ok);
-// foreach($customerdata as $citem){ 
-//     $customer_id = $citem->getCustomerId();
-//     // echo $customer_id;
-//     // print_r($final);
-            foreach($final as $orderItem){
-    // echo 123;
-                $order_id = $orderItem->getOrderId();
-                $order = Mage::getModel('sales/order_item')->getCollection()
-                ->addFieldToFilter('order_id',$order_id);
-                $orderhello = $order->getData();
-                foreach($orderhello as $item){
-    //  print_r($order_id);
+$OrderId = $this->getOrderStatus();
+
+
+foreach($final as $orderItem):
+    $order_id = $orderItem->getOrderId();
+    $order = Mage::getModel('sales/order_item')->getCollection()->addFieldToFilter('order_id',$order_id);
+    $orderhello = $order->getData();
+    $cancelButton = $this->showCancelButton();
+    $cancelOrderIds = [];
+    foreach($cancelButton as $cancelOrderId){
+        $cancelOrderIds[] = $cancelOrderId->getOrderId();
+    }
 ?>
-<div class="list">
-    <h2>Product List</h2>
+
+<div class="order-list">
+    <h2>Order List</h2>
     <table>
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Color</th>   
+                <th>Item ID</th>
+                <th>Order ID</th>
+                <th>Cancel Order</th>
             </tr>
         </thead>
         <tbody>
+            <?php foreach($orderhello as $item): ?>
                 <tr>
+                    <td><?php echo $item->getProductName() ?></td>
+                    <td><?php echo $item->getProductColor() ?></td> 
+                    <td><?php echo $item->getItemId() ?></td> 
+                    <td><?php echo $item->getOrderId() ?></td> 
                     <td>
-                        <?php echo $item->getProductName() ?>
+                        <?php if(!in_array( $item->getOrderId(),$cancelOrderIds) && in_array($item->getOrderId(),$OrderId )): ?>
+                            <form action="<?php echo Mage::getBaseUrl('sales/customer/cancel'); ?>" method="post">
+                                <input type="hidden" name="cancel[order_id]" value="<?php echo $item->getOrderId() ?>">
+                                <input type="submit" name="cancel[cancel]" value="Cancel">
+                            </form>
+                     
+                        <?php else: ?>
+                            <?php echo "Your cancellation request has been sent" ?>
+                        <?php endif; ?>
                     </td>
-                    <td>
-                        <?php echo $item->getProductColor() ?>
-                    </td> 
-                    <td>
-                        <?php echo $item->getItemId() ?>
-                    </td> 
                 </tr>
-            <?php 
-
-        
-    }
-   
-}
-              ; 
-     ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+
+<?php endforeach; ?>
