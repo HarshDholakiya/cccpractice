@@ -92,5 +92,25 @@ class Core_Model_Db_Adapter
     {
 
     }
+    public function saveImport($tableName, $data){
+        $keys = array_keys($data);
+        print_r($keys);
+    
+        $values = array_map(function ($value) {
+            return "'" . $value . "'";
+        }, $data);
+        // print_r($values);
+        $check = Mage::getModel('catalog/product')->getCollection()->addFieldToFilter('sku', $data['sku'])->getFirstItem();
+        if ($check) {
+            $updateValues = array();
+            foreach ($values as $key => $column) {
+                $updateValues[] = "$key = " . $column;
+            }
+            $sql = "UPDATE {$tableName} SET " . implode(", ", $updateValues) . " WHERE sku=" . "'" . $data['sku'] . "'";
+        } else {
+            $sql = "INSERT INTO {$tableName} (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $values) . ")";
+        }
+        mysqli_query($this->connect(), $sql);
+    }
 
 }

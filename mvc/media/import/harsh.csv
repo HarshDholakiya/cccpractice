@@ -1,0 +1,21 @@
+sku,inventory,name,color,size,description,image_link,link,category_id,price,mfr_cost,shipping_cost,total_cost,margin_percentage,min_price,status
+SKU1001,50,T-Shirt,Red,M,Cotton tee,product1.png,[productpage1],001,19.99,8.50,3.00,11.50,42%,15.99,1
+SKU2045,30,Leather Wallet,Brown,One Size,Genuine leather wallet,product2.png,[productpage2],002,29.99,15.00,4.50,19.50,35%,24.99,1
+SKU3056,20,Sneakers,Black,10,Stylish sneakers,product3.png,[productpage3],003,49.99,25.00,5.00,30.00,40%,39.99,1
+SKU4023,15,Coffee Mug,White,One Size,Ceramic mug,product4.png,[productpage4],004,9.99,4.00,2.00,6.00,60%,7.99,1
+SKU5102,40,Denim Jeans,Blue,32x32,Classic jeans,product5.png,[productpage5],005,39.99,20.00,4.00,24.00,40%,29.99,1
+SKU6110,25,Sunglasses,Black,One Size,UV sunglasses,product6.png,[productpage6],006,24.99,12.00,3.50,15.50,38%,19.99,1
+SKU7025,10,Running Shoes,Gray,9,Lightweight shoes,product7.png,[productpage7],007,69.99,35.00,6.50,41.50,40%,54.99,1
+SKU8034,35,Backpack,Green,One Size,Durable backpack,product8.png,[productpage8],008,49.99,28.00,5.00,33.00,34%,39.99,1
+SKU9002,60,Wireless Earphones,Black,One Size,Bluetooth earphones,product9.png,[productpage9],009,79.99,45.00,7.00,52.00,35%,64.99,1
+SKU10022,5,Phone Case,Blue,One Size,Protective case,product10.png,[productpage10],010,14.99,7.00,2.50,9.50,36%,11.99,1
+SKU11013,18,Leather Belt,Brown,36,Genuine belt,product11.png,[productpage11],011,19.99,10.00,3.00,13.00,35%,15.99,1
+SKU12056,22,Desk Lamp,Black,One Size,Adjustable lamp,product12.png,[productpage12],012,34.99,18.00,4.50,22.50,36%,27.99,1
+SKU13045,27,Notebook,Gray,One Size,Hardcover notebook,product13.png,[productpage13],013,7.99,3.50,1.50,5.00,38%,5.99,1
+SKU14089,12,Umbrella,Blue,One Size,Compact umbrella,product14.png,[productpage14],014,17.99,8.50,2.50,11.00,39%,14.99,1
+SKU15034,48,Water Bottle,Red,One Size,Stainless steel bottle,product15.png,[productpage15],015,12.99,5.00,2.00,7.00,46%,9.99,1
+SKU16021,8,Beanie Hat,Black,One Size,Knit beanie,product16.png,[productpage16],016,9.99,4.50,1.50,6.00,40%,7.99,1
+SKU17001,14,Gym Bag,Black,One Size,Spacious bag,product17.png,[productpage17],017,29.99,16.00,3.50,19.50,35%,23.99,1
+SKU18032,33,Travel Pillow,Gray,One Size,Memory foam pillow,product18.png,[productpage18],018,19.99,9.00,3.00,12.00,40%,15.99,1
+SKU19011,29,Watch,Gold,One Size,Elegant watch,product19.png,[productpage19],019,59.99,32.00,6.00,38.00,37%,47.99,1
+SKU20048,17,Sweatshirt,Gray,Large,Cozy sweatshirt,product20.png,[productpage20],020,44.99,22.50,5.00,27.50,38%,35.99,1

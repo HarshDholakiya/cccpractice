@@ -25,19 +25,20 @@ class Core_Model_Resource_Collection_Abstract
     //     return $this;
     // }
     public function addOrderBy($field, $direction = 'ASC')
-{
-    $this->_select['ORDER BY'][] = array(
-        'field' => $field,
-        'direction' => strtoupper($direction)
-    );
-    return $this;
-}
+    {
+        $this->_select['ORDER BY'][] = array(
+            'field' => $field,
+            'direction' => strtoupper($direction)
+        );
+        return $this;
+    }
 
-    public function addBetween($val1,$field,$val2){
+    public function addBetween($val1, $field, $val2)
+    {
         $this->_select['BETWEEN'][] = array(
-            'val1'=>$val1,
-            'field'=>$field,
-            'val2'=>$val2
+            'val1' => $val1,
+            'field' => $field,
+            'val2' => $val2
         );
         return $this;
     }
@@ -76,7 +77,7 @@ class Core_Model_Resource_Collection_Abstract
                             case 'between':
                                 $whereCondition[] = "{$column} BETWEEN '{$_v}'";
                                 break;
-                            
+
                         }
                     }
                 }
@@ -87,16 +88,16 @@ class Core_Model_Resource_Collection_Abstract
         // if(isset($this->_select['ORDER BY'])){
         //     $sql .= " ORDER BY {$this->_select['ORDER BY']}";
         // }
-        if(isset($this->_select['ORDER BY'])){
+        if (isset ($this->_select['ORDER BY'])) {
             $orderBy = [];
             foreach ($this->_select['ORDER BY'] as $order) {
                 $orderBy[] = "{$order['field']} {$order['direction']}";
             }
             $sql .= " ORDER BY " . implode(', ', $orderBy);
         }
-        if(isset($this->_select['BETWEEN'])){
+        if (isset ($this->_select['BETWEEN'])) {
             $betweenby = [];
-            foreach($this->_select['BETWEEN'] as $between){
+            foreach ($this->_select['BETWEEN'] as $between) {
                 $betweenby[] = "{$between['field']} BETWEEN {$between['val1']} AND {$between['val2']}";
             }
             $sql .= " WHERE " . implode(' AND ', $betweenby);

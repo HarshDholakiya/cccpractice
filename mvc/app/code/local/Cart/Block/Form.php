@@ -11,10 +11,10 @@ class Cart_Block_Form extends Core_Block_Template
             ->getCollection()
             ->addFieldToFilter('quote_id', Mage::getSingleton('core/session')->get('quote_id'))->getData();
     }
-    public function getItem($id)
-    {   
-        return $this->getQuoteItem()->addFieldToFilter('item_id',$id);
-    }
+    // public function getItem($id)
+    // {   
+    //     return $this->getQuoteItem()->addFieldToFilter('item_id',$id);
+    // }
     public function getProductList(){
         return Mage::getModel('catalog/product')->getCollection();
     }

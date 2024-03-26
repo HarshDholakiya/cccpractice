@@ -10,9 +10,9 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function initQuote()
     {
         $quoteId = Mage::getSingleton('core/session')->get('quote_id');
-        print_r($quoteId);
+        // print_r($quoteId);
         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-        print_r($customerId);
+        // print_r($customerId);
         $exstingquote = Mage::getModel('sales/quote')->getCollection()
         ->addFieldToFilter('order_id',0)
         ->addFieldToFilter('customer_id',$customerId)->getFirstItem();

@@ -1,6 +1,7 @@
 <?php
 $customer_id = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-$final = Mage::getModel('sales/order_customer')->getCollection()->addFieldToFilter('customer_id',$customer_id)->getData();
+$final = Mage::getModel('sales/order_customer')->getCollection()
+            ->addFieldToFilter('customer_id',$customer_id)->getData();
 $OrderId = $this->getOrderStatus();
 
 

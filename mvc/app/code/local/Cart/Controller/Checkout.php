@@ -1,5 +1,7 @@
 <?php
 class Cart_Controller_Checkout extends Core_Controller_Front_Action{
+    protected $_allowActions = [];
+ 
     public function formAction(){
         $layout = $this->getLayout();
         $layout->getChild('head')->addcss('header.css');

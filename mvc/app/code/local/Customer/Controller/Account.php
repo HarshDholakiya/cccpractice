@@ -3,13 +3,13 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 {
     protected $_allowActions = ['login','register'];
 
-    public function init(){
-        $this->getRequest()->getActionName();
-        if(!in_array($this->getRequest()->getActionName(),$this->_allowActions) &&
-                !Mage::getSingleton('core/session')->get("logged_in_customer_id")){
-            $this->setRedirect('customer/account/login');
-        }
-    }
+    // public function init(){
+    //     $this->getRequest()->getActionName();
+    //     if(!in_array($this->getRequest()->getActionName(),$this->_allowActions) &&
+    //             !Mage::getSingleton('core/session')->get("logged_in_customer_id")){
+    //         $this->setRedirect('customer/account/login');
+    //     }
+    // }
     public function registerAction()
     {
         $layout = $this->getLayout();
