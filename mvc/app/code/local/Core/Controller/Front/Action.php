@@ -7,17 +7,17 @@ class Core_Controller_Front_Action
         //print_r($this);
         $this->init();
     }
-    // public function init(){
-        
-    //     return $this;
-    // }
     public function init(){
-        $this->getRequest()->getActionName();
-        if(!in_array($this->getRequest()->getActionName(),$this->_allowActions) &&
-                !Mage::getSingleton('core/session')->get("logged_in_customer_id")){
-            $this->setRedirect('customer/account/login');
-        }
+        
+        return $this;
     }
+    // public function init(){
+    //     $this->getRequest()->getActionName();
+    //     if(!in_array($this->getRequest()->getActionName(),$this->_allowActions) &&
+    //             !Mage::getSingleton('core/session')->get("logged_in_customer_id")){
+    //         $this->setRedirect('customer/account/login');
+    //     }
+    // }
     public function getLayout()
     {
         if (is_null($this->_layout)) {

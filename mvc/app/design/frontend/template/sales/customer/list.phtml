@@ -1,55 +1,86 @@
 <?php
-$customer_id = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-$final = Mage::getModel('sales/order_customer')->getCollection()
-            ->addFieldToFilter('customer_id',$customer_id)->getData();
-$OrderId = $this->getOrderStatus();
-
-
-foreach($final as $orderItem):
-    $order_id = $orderItem->getOrderId();
-    $order = Mage::getModel('sales/order_item')->getCollection()->addFieldToFilter('order_id',$order_id);
-    $orderhello = $order->getData();
     $cancelButton = $this->showCancelButton();
     $cancelOrderIds = [];
-    foreach($cancelButton as $cancelOrderId){
+    foreach ($cancelButton as $cancelOrderId) {
         $cancelOrderIds[] = $cancelOrderId->getOrderId();
     }
-?>
+    $OrderId = $this->getOrderStatus();
+    ?>
 
-<div class="order-list">
-    <h2>Order List</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Color</th>   
-                <th>Item ID</th>
-                <th>Order ID</th>
-                <th>Cancel Order</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($orderhello as $item): ?>
+    <div class="order-list">
+        <h2>Order List</h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo $item->getProductName() ?></td>
-                    <td><?php echo $item->getProductColor() ?></td> 
-                    <td><?php echo $item->getItemId() ?></td> 
-                    <td><?php echo $item->getOrderId() ?></td> 
-                    <td>
-                        <?php if(!in_array( $item->getOrderId(),$cancelOrderIds) && in_array($item->getOrderId(),$OrderId )): ?>
-                            <form action="<?php echo Mage::getBaseUrl('sales/customer/cancel'); ?>" method="post">
-                                <input type="hidden" name="cancel[order_id]" value="<?php echo $item->getOrderId() ?>">
-                                <input type="submit" name="cancel[cancel]" value="Cancel">
-                            </form>
-                     
-                        <?php else: ?>
-                            <?php echo "Your cancellation request has been sent" ?>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+                    <th>Name</th>
+                    <th>Color</th>
+                    <th>Item ID</th>
+                    <th>Order ID</th>
+                    <th>Order Status</th>
+                    <th>Cancel Order</th>
 
-<?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($this->showCustomerOrder() as $customer): ?>
+                        <?php foreach ($customer as $item): ?>
+                    <tr>
+                        <td>
+                            <?php echo $item->getProductName() ?>
+                        </td>
+                        <td>
+                            <?php echo $item->getProductColor() ?>
+                        </td>
+                        <td>
+                            <?php echo $item->getItemId() ?>
+                        </td>
+                        <td>
+                            <?php echo $item->getOrderId() ?>
+                        </td>
+                        <td>
+                            <?php
+                           $status = Mage::getModel('sales/order')
+                               ->getCollection()
+                               ->addFieldToFilter('order_id', $item->getOrderId())->getFirstItem()->getStatus();
+                           echo $status;
+                            ?>
+                              
+                        </td>
+                        <td>
+                            <?php if (!in_array($item->getOrderId(), $cancelOrderIds) && !in_array($item->getOrderId(), $OrderId)): ?>
+                                <form action="<?php echo Mage::getBaseUrl('sales/customer/cancel'); ?>" method="post">
+                                    <input type="hidden" name="cancel[order_id]" value="<?php echo $item->getOrderId() ?>">
+                                    <input type="submit" name="cancel[cancel]" value="Cancel">
+                                </form>
+
+                            <?php else: ?>
+                                <?php echo "Your cancellation request has been sent" ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+
+<?php
+function calculateProgress($status) {
+    // Calculate progress based on status
+    // You can define your logic here based on the different status values
+    // For example, if you have 'pending', 'processing', 'completed', you can assign 0%, 50%, 100% respectively
+    // This is a placeholder function, you should implement your own logic
+    
+    switch ($status) {
+        case 'pending':
+            return 0;
+        case 'processing':
+            return 50;
+        case 'completed':
+            return 100;
+        default:
+            return 0;
+    }
+}
+?>

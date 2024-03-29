@@ -20,6 +20,7 @@ class Core_Model_Db_Adapter
     public function fetchAll($query)
     {
         $row = [];
+        // print_r($query);
         // $this->connect();
         $result = mysqli_query($this->connect(), $query);
         while ($_row = $result->fetch_assoc()) {
@@ -94,7 +95,7 @@ class Core_Model_Db_Adapter
     }
     public function saveImport($tableName, $data){
         $keys = array_keys($data);
-        print_r($keys);
+        // print_r($keys);
     
         $values = array_map(function ($value) {
             return "'" . $value . "'";

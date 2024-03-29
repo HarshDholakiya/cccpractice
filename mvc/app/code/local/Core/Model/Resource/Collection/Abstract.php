@@ -83,7 +83,7 @@ class Core_Model_Resource_Collection_Abstract
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
-            echo $sql;
+            // echo $sql;
         }
         // if(isset($this->_select['ORDER BY'])){
         //     $sql .= " ORDER BY {$this->_select['ORDER BY']}";
@@ -103,7 +103,7 @@ class Core_Model_Resource_Collection_Abstract
             $sql .= " WHERE " . implode(' AND ', $betweenby);
         }
         $result = $this->_resource->getAdapter()->fetchAll($sql);
-        echo $sql;
+        // echo $sql;
 
         foreach ($result as $row) {
             $this->_data[] = Mage::getModel($this->_model)->setData($row);

@@ -111,3 +111,4 @@ class View_Product
     }
 }
 ?>
+<!-- C:\xampp\htdocs\intern_php\practice\mvc_form\View\Product.php -->

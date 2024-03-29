@@ -14,6 +14,7 @@ class Catalog_Block_Product_View extends Core_Block_Template
     public function getItem()
     {
         $id = $this->getRequest()->getParams('product_id');
+        // print_r($id);
         if($id){
             $list =  Mage::getModel("catalog/product")->getCollection()->addFieldToFilter('product_id',$id);
             return $list->getData();

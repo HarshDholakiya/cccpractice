@@ -1,0 +1,22 @@
+<form action="<?php echo $this->getUrl("countrycollection/form/add")?>" method="post">
+    <select name="id">
+        <?php foreach ($this->getStatusMethod() as $list): ?>
+            <option value="<?php echo $list->getId() ?>" <?php echo($this->selectedId()==$list->getId()) ? 'selected' : ''  ?>>
+                <?php echo $list->getName() ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+   <input type="submit" name="" value="submit" id="">
+</form>
+<br>
+
+    <select >
+        <?php foreach ($this->childoption() as $_list): ?>
+            <option value="<?php echo $_list->getId() ?>">
+                <?php echo $_list->getName() ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+  
+
+

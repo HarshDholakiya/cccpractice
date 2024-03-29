@@ -298,4 +298,5 @@
 // echo "Total Price: " . $cart->calculateTotal() . " USD";
 
 
+
 ?>

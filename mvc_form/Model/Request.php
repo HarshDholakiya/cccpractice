@@ -5,7 +5,14 @@ class Model_Request{
 }
 public function getrequestURI(){
     $request_uri = $_SERVER['REQUEST_URI'];
-    return $request_uri;
+    // echo  $request_uri; 
+    // $request_uri = str_replace("/intern_php/practice/mvc_form", "", $request_uri);
+    // // echo  $request_uri; 
+    // $request_uri =  str_replace("/","_", $request_uri);
+    // $request_uri = 'view'.$request_uri; 
+       
+      
+     return $request_uri;
 }
 public function getParams($key='')
 {

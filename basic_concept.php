@@ -154,7 +154,7 @@
 //2. ceil($number): Rounds a number up to the nearest integer.
 //   $number = 5.3;
 //   echo ceil($number);
-//  Output: Rounded up value of 4.3 is: 6
+//  Output: Rounded up value of 5.3 is: 6
 
 //3. floor($number): Rounds a number down to the nearest integer.
 // $number = 8.9;
@@ -495,6 +495,53 @@
 
 // foreach ($colors as $x) {
 //   echo "$x <br>";
+// }
+
+
+// Root Folder
+//     /app/code/local
+//             /Product/
+//                 /Model
+//                 /Controller
+//                 /View
+//             /Customer
+//                 /Model
+//                 /Controller
+//                 /View
+//         /design/frontend/tempalte/
+//             /product
+//                 /form.phtml
+//                 /list.phtml
+//                 /grid.phtml
+//             /customer/
+//                 /form.phtml
+//                 /list.phtml
+//                 /address/
+//                     form.phtml
+
+// // http://localhost/myfolderrootdirectory/
+// product/index/new
+// product/index/list
+// product/index/save
+// product/index/delete
+
+// customer/index/new
+// customer/index/list
+// customer/index/save
+// customer/index/delete
+
+// customer/address/new
+// customer/address/list
+// customer/address/save
+// customer/address/delete
+
+// customer/quot_address/new
+// customer/address/list
+// customer/address/save
+// customer/address/delete
+
+// function tri($total=5){
+//         for ($i= $total; $i >=1; $i--) {
 // }
 
 ?>
